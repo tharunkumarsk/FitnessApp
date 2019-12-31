@@ -1,4 +1,11 @@
-// utils/helpers.js
+import React from "react";
+import { View } from "react-native";
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons
+} from "@expo/vector-icons";
+import { red } from "./colors";
 
 export function isBetween(num, x, y) {
   if (num >= x && num <= y) {
@@ -42,4 +49,95 @@ export function timeToString(time = Date.now()) {
     Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
   );
   return todayUTC.toISOString().split("T")[0];
+}
+export function getMatricMetaData(metric) {
+  const info = {
+    run: {
+      displaName: "Run",
+      max: 50,
+      unit: "miles",
+      step: 1,
+      type: "steppers",
+      getIcon() {
+        return (
+          <view>
+            <MaterialIcons
+              name="direction-run"
+              color={"red"}
+              size={35}
+            ></MaterialIcons>
+          </view>
+        );
+      }
+    },
+    bike: {
+      displaName: "Bike",
+      max: 100,
+      unit: "miles",
+      step: 1,
+      type: "steppers",
+      getIcon() {
+        return (
+          <view>
+            <MaterialCommunityIcons
+              name="bike"
+              color={"black"}
+              size={35}
+            ></MaterialCommunityIcons>
+          </view>
+        );
+      }
+    },
+    swim: {
+      displaName: "Swim",
+      max: 9900,
+      unit: "meters",
+      step: 100,
+      type: "steppers",
+      getIcon() {
+        return (
+          <view>
+            <MaterialCommunityIcons
+              name="swim"
+              color={"red"}
+              size={35}
+            ></MaterialCommunityIcons>
+          </view>
+        );
+      }
+    },
+    eat: {
+      displaName: "Eat",
+      max: 10,
+      unit: "rating",
+      step: 1,
+      type: "slider",
+      getIcon() {
+        return (
+          <view>
+            <MaterialCommunityIcons
+              name="food"
+              color={"red"}
+              size={35}
+            ></MaterialCommunityIcons>
+          </view>
+        );
+      }
+    },
+    sleep: {
+      displaName: "Sleep",
+      max: 24,
+      unit: "hours",
+      step: 1,
+      type: "slider",
+      getIcon() {
+        return (
+          <view>
+            <FontAwesome name="bed" color={"red"} size={35}></FontAwesome>
+          </view>
+        );
+      }
+    }
+  };
+  return typeof metric === "undefined" ? info : info[metric];
 }
