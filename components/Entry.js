@@ -3,7 +3,7 @@ import { View, text } from "react-native";
 import { getMatricMetaData } from "../utils/helpers";
 import Slider from "./slider";
 import Stepper from "./stepper";
-
+import Dateheader from "./Dateheader";
 export default class Entry extends Component {
   state = {
     run: 0,
@@ -46,6 +46,7 @@ export default class Entry extends Component {
     const metaInfo = getMatricMetaData();
     return (
       <View>
+        <Dateheader date={new Date().toLocaleDateString()} />
         {Object.keys(metaInfo).map(key => {
           const { getIcon, type, ...rest } = metaInfo[key];
           const value = this.state[key];
