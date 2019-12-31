@@ -62,7 +62,7 @@ export function getMatricMetaData(metric) {
         return (
           <view>
             <MaterialIcons
-              name="direction-run"
+              name="directions-run"
               color={"red"}
               size={35}
             ></MaterialIcons>

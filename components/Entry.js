@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { view, text } from "react-native";
+import { View, text } from "react-native";
 import { getMatricMetaData } from "../utils/helpers";
+import Slider from "./slider";
+import Stepper from "./stepper";
 
 export default class Entry extends Component {
   state = {
@@ -41,10 +43,34 @@ export default class Entry extends Component {
   };
 
   render() {
+    const metaInfo = getMatricMetaData();
     return (
-      <div>
-        <view>{getMatricMetaData("bike").getIcon()}</view>
-      </div>
+      <View>
+        {Object.keys(metaInfo).map(key => {
+          const { getIcon, type, ...rest } = metaInfo[key];
+          const value = this.state[key];
+
+          return (
+            <View key={key}>
+              {getIcon()}
+              {type === "slider" ? (
+                <Slider
+                  value={value}
+                  onChange={value => this.slide(key, value)}
+                  {...rest}
+                />
+              ) : (
+                <Stepper
+                  value={value}
+                  onIncrement={() => this.increment(key)}
+                  onDecrement={() => this.decrement(key)}
+                  {...rest}
+                />
+              )}
+            </View>
+          );
+        })}
+      </View>
     );
   }
 }
