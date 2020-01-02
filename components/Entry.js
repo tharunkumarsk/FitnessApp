@@ -7,6 +7,15 @@ import Dateheader from "./Dateheader";
 import { Ionicons } from "@expo/vector-icons";
 import TextButton from "./TextButton";
 import PropTypes from "prop-types";
+import { submitEntry, removeEntry } from "../utils/api";
+
+function SubmitBtn({ onPress }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text>SUBMIT</Text>
+    </TouchableOpacity>
+  );
+}
 
 export default class Entry extends Component {
   static propTypes = {
@@ -49,18 +58,35 @@ export default class Entry extends Component {
     }));
   };
 
+  reset = () => {
+    const key = timeToString();
+    removeEntry(key);
+  };
   submit = () => {
-    this.setState(() => ({ run: 0, bike: 0, swim: 0, sleep: 0, eat: 0 }));
+    const key = timeToString();
+    const entry = this.state;
+    this.setState({
+      run: 0,
+      bike: 0,
+      swim: 0,
+      sleep: 0,
+      eat: 0
+    });
+
+    submitEntry({ key, entry });
   };
 
   render() {
     const metaInfo = getMatricMetaData();
+    {
+      console.log(JSON.stringify(this.metaInfo));
+    }
     if (this.props.alreadyLogged) {
       return (
         <View>
           <Ionicons name="ios-happy" size={100} />
           <Text>You already logged your information for today.</Text>
-          <TextButton onPress={this.submit}>Reset</TextButton>
+          <TextButton onPress={this.reset}>Reset</TextButton>
         </View>
       );
     }
@@ -91,6 +117,7 @@ export default class Entry extends Component {
             </View>
           );
         })}
+        <SubmitBtn />
       </View>
     );
   }
