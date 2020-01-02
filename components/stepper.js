@@ -1,6 +1,10 @@
 import React from "react";
-import { view, text } from "react-native";
+import { View, Text } from "react-native";
 
 export default function stepper() {
-  return <text>stepper</text>;
+  return (
+    <View>
+      <Text>stepper</Text>
+    </View>
+  );
 }

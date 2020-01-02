@@ -60,13 +60,13 @@ export function getMatricMetaData(metric) {
       type: "steppers",
       getIcon() {
         return (
-          <view>
+          <View>
             <MaterialIcons
               name="directions-run"
               color={"red"}
               size={35}
             ></MaterialIcons>
-          </view>
+          </View>
         );
       }
     },
@@ -78,13 +78,13 @@ export function getMatricMetaData(metric) {
       type: "steppers",
       getIcon() {
         return (
-          <view>
+          <View>
             <MaterialCommunityIcons
               name="bike"
               color={"black"}
               size={35}
             ></MaterialCommunityIcons>
-          </view>
+          </View>
         );
       }
     },
@@ -96,13 +96,13 @@ export function getMatricMetaData(metric) {
       type: "steppers",
       getIcon() {
         return (
-          <view>
+          <View>
             <MaterialCommunityIcons
               name="swim"
               color={"red"}
               size={35}
             ></MaterialCommunityIcons>
-          </view>
+          </View>
         );
       }
     },
@@ -114,13 +114,13 @@ export function getMatricMetaData(metric) {
       type: "slider",
       getIcon() {
         return (
-          <view>
+          <View>
             <MaterialCommunityIcons
               name="food"
               color={"red"}
               size={35}
             ></MaterialCommunityIcons>
-          </view>
+          </View>
         );
       }
     },
@@ -132,9 +132,9 @@ export function getMatricMetaData(metric) {
       type: "slider",
       getIcon() {
         return (
-          <view>
+          <View>
             <FontAwesome name="bed" color={"red"} size={35}></FontAwesome>
-          </view>
+          </View>
         );
       }
     }
