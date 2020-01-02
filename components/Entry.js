@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { getMatricMetaData, timeToString } from "../utils/helpers";
+import {
+  getMatricMetaData,
+  timeToString,
+  getDailyReminderValue
+} from "../utils/helpers";
 import UnitSlider from "./slider";
 import Stepper from "./stepper";
 import Dateheader from "./Dateheader";
@@ -8,6 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import TextButton from "./TextButton";
 import PropTypes from "prop-types";
 import { submitEntry, removeEntry } from "../utils/api";
+import { connect } from "react-redux";
+import { addEntry } from "../actions";
 
 function SubmitBtn({ onPress }) {
   return (
@@ -17,9 +23,10 @@ function SubmitBtn({ onPress }) {
   );
 }
 
-export default class Entry extends Component {
+class Entry extends Component {
   static propTypes = {
-    alreadyLogged: PropTypes.bool
+    alreadyLogged: PropTypes.bool,
+    addEntry: PropTypes.func.isRequired
   };
   state = {
     run: 0,
@@ -60,11 +67,19 @@ export default class Entry extends Component {
 
   reset = () => {
     const key = timeToString();
+    this.props.addEntry({
+      [key]: getDailyReminderValue()
+    });
     removeEntry(key);
   };
   submit = () => {
     const key = timeToString();
     const entry = this.state;
+
+    this.props.addEntry({
+      [key]: entry
+    });
+
     this.setState({
       run: 0,
       bike: 0,
@@ -72,15 +87,11 @@ export default class Entry extends Component {
       sleep: 0,
       eat: 0
     });
-
-    submitEntry({ key, entry });
   };
 
   render() {
     const metaInfo = getMatricMetaData();
-    {
-      console.log(JSON.stringify(this.metaInfo));
-    }
+
     if (this.props.alreadyLogged) {
       return (
         <View>
@@ -122,3 +133,13 @@ export default class Entry extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  const key = timeToString();
+
+  return {
+    alreadyLogged: state[key] && typeof state[key].today === "undefined"
+  };
+}
+
+export default connect(mapStateToProps, { addEntry })(Entry);
