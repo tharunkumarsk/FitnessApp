@@ -4,7 +4,7 @@ import Entry from "./components/Entry";
 export default function App() {
   return (
     <View>
-      <Entry />
+      <Entry alreadyLogged={true} />
     </View>
   );
 }

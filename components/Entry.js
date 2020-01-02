@@ -4,16 +4,14 @@ import { getMatricMetaData, timeToString } from "../utils/helpers";
 import UnitSlider from "./slider";
 import Stepper from "./stepper";
 import Dateheader from "./Dateheader";
-
-function SubmitBtn({ onPress }) {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <Text>SUBMIT</Text>
-    </TouchableOpacity>
-  );
-}
+import { Ionicons } from "@expo/vector-icons";
+import TextButton from "./TextButton";
+import PropTypes from "prop-types";
 
 export default class Entry extends Component {
+  static propTypes = {
+    alreadyLogged: PropTypes.bool
+  };
   state = {
     run: 0,
     bike: 0,
@@ -57,6 +55,15 @@ export default class Entry extends Component {
 
   render() {
     const metaInfo = getMatricMetaData();
+    if (this.props.alreadyLogged) {
+      return (
+        <View>
+          <Ionicons name="ios-happy" size={100} />
+          <Text>You already logged your information for today.</Text>
+          <TextButton onPress={this.submit}>Reset</TextButton>
+        </View>
+      );
+    }
     return (
       <View>
         <Dateheader date={new Date().toLocaleDateString()} />
@@ -84,7 +91,6 @@ export default class Entry extends Component {
             </View>
           );
         })}
-        <SubmitBtn />
       </View>
     );
   }
