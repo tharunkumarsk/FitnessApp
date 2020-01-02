@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { View, text } from "react-native";
-import { getMatricMetaData } from "../utils/helpers";
+import { View, Text, TouchableOpacity } from "react-native";
+import { getMatricMetaData, timeToString } from "../utils/helpers";
 import Slider from "./slider";
 import Stepper from "./stepper";
 import Dateheader from "./Dateheader";
+
+function SubmitBtn({ onPress }) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text>SUBMIT</Text>
+    </TouchableOpacity>
+  );
+}
+
 export default class Entry extends Component {
   state = {
     run: 0,
@@ -42,6 +51,10 @@ export default class Entry extends Component {
     }));
   };
 
+  submit = () => {
+    this.setState(() => ({ run: 0, bike: 0, swim: 0, sleep: 0, eat: 0 }));
+  };
+
   render() {
     const metaInfo = getMatricMetaData();
     return (
@@ -71,6 +84,7 @@ export default class Entry extends Component {
             </View>
           );
         })}
+        <SubmitBtn />
       </View>
     );
   }
