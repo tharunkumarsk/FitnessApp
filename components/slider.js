@@ -26,7 +26,8 @@ export default function UnitSlider({ max, unit, step, value, onChange }) {
 const styles = StyleSheet.create({
   row: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center"
   },
   metricCounter: {
     width: 85,
