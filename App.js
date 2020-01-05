@@ -11,6 +11,7 @@ export default function App() {
     <Provider store={createStore(reducer)}>
       <View style={{ flex: 1 }}>
         {/* <Entry alreadyLogged={false} /> */}
+        <View style={{height:20}}/>
         <History></History>
       </View>
     </Provider>

@@ -1,11 +1,10 @@
 import React ,{Component}from "react";
-import PropTypes from "prop-types";
 import { Text, View } from "react-native";
 import { receiveEntries,addEntry } from '../actions/index';
 import { timeToString,getDailyReminderValue } from '../utils/helpers';
 import { fetchCalendarResults } from '../utils/api';
 import { connect } from 'react-redux';
-import entries from '../reducers/index';
+import  UdaciFitnessCalendar  from 'udacifitness-calendar';
 
 class History extends Component {
     componentDidMount(){
@@ -22,11 +21,35 @@ class History extends Component {
 
 
     }
+    renderItem  =({today,...metrics},formattedDate,key) =>{
+    <View>
+        {today
+        ? <Text>{JSON.stringify(today)}</Text>
+        : <Text>{JSON.stringify(metrics)}</Text>
+        }
+    </View>
+    }
+
+    renderEmptyDate(formattedDate){
+    return(
+        <View>
+            <Text>No date for thi date !</Text>
+        </View>
+    )
+    }
+
     render() {
+        const {entries} = this.props
         return (
-          <View>
-    <Text>{JSON.stringify(this.props)}</Text>
-          </View>
+            <UdaciFitnessCalendar
+            items={entries}
+            renderItem={this.renderItem}
+            renderEmptyDate={this.renderEmptyDate}
+          />
+    //     <View>
+    // <Text>{JSON.stringify(entries)}</Text>
+    // </View>
+
         )
       }
 }
