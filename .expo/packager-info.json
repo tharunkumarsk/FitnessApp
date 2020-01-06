@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19003,
-  "packagerPid": 45456,
+  "packagerPort": 19001,
+  "packagerPid": 10298,
   "expoServerNgrokUrl": "https://w3-x2w.tharunkumar.fitnessapp.exp.direct",
   "packagerNgrokUrl": "https://packager.w3-x2w.tharunkumar.fitnessapp.exp.direct",
-  "ngrokPid": 45966,
+  "ngrokPid": 10320,
   "webpackServerPort": null
 }
