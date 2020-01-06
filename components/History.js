@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import UdaciFitnessCalendar from "udacifitness-calendar";
 import { white } from "../utils/colors";
 import DateHeader from "./Dateheader";
+import MetricCard from "./MetricCard";
 
 class History extends Component {
   componentDidMount() {
@@ -30,11 +31,6 @@ class History extends Component {
       });
   }
   renderItem = ({ today, ...metrics }, formattedDate, key) => {
-    {
-      console.log(JSON.stringify(metrics));
-      console.log(today);
-      console.log(formattedDate);
-    }
     <View style={styles.item}>
       {today ? (
         <View>
@@ -42,8 +38,8 @@ class History extends Component {
           <Text style={styles.noDataText}>{today}</Text>
         </View>
       ) : (
-        <TouchableOpacity onPress={() => console.log("Pressed!")}>
-          <Text>{JSON.stringify(metrics)}</Text>
+        <TouchableOpacity>
+          <MetricCard date={formattedDate} metrics={metrics} />
         </TouchableOpacity>
       )}
     </View>;
