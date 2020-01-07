@@ -192,6 +192,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 30,
     marginRight: 30
+  },
+  btnContainer: {
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    flex: 1,
+    marginBottom: 36
   }
 });
 
