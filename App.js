@@ -14,6 +14,7 @@ import {
   createMaterialTopTabNavigator
 } from "react-navigation-tabs";
 import Constants from "expo-constants";
+import EntryDetails from "./components/EntryDetails";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -75,6 +76,17 @@ const MainNavigation = createStackNavigator({
     screen: TabNavigator,
     navigationOptions: {
       header: null
+    }
+  },
+  EntryDetails: {
+    screen: EntryDetails,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: red,
+        height: 50
+      },
+      headerForceInset: { top: "never", bottom: "never" }
     }
   }
 });
