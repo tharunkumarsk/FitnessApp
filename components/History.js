@@ -14,12 +14,12 @@ import UdaciFitnessCalendar from "udacifitness-calendar";
 import { white } from "../utils/colors";
 import DateHeader from "./Dateheader";
 import MetricCard from "./MetricCard";
-import { AppLoading} from 'expo'
+import { AppLoading } from "expo";
 
 class History extends Component {
   state = {
-    ready: false,
-  }
+    ready: false
+  };
   componentDidMount() {
     const { dispatch } = this.props;
     fetchCalendarResults()
@@ -32,22 +32,24 @@ class History extends Component {
             })
           );
         }
-      }).then(() => this.setState(() => ({ready: true})))
-
+      })
+      .then(() => this.setState(() => ({ ready: true })));
   }
   renderItem = ({ today, ...metrics }, formattedDate, key) => {
-    <View style={styles.item}>
-      {today ? (
-        <View>
-          <DateHeader date={formattedDate} />
-          <Text style={styles.noDataText}>{today}</Text>
-        </View>
-      ) : (
-        <TouchableOpacity>
-          <MetricCard date={formattedDate} metrics={metrics} />
-        </TouchableOpacity>
-      )}
-    </View>;
+    return (
+      <View style={styles.item}>
+        {today ? (
+          <View>
+            <DateHeader date={formattedDate} />
+            <Text style={styles.noDataText}>{today}</Text>
+          </View>
+        ) : (
+          <TouchableOpacity>
+            <MetricCard date={formattedDate} metrics={metrics} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
   };
 
   renderEmptyDate(formattedDate) {
@@ -63,9 +65,9 @@ class History extends Component {
 
   render() {
     const { entries } = this.props;
-    const { ready } = this.state
+    const { ready } = this.state;
     if (ready === false) {
-      return <AppLoading />
+      return <AppLoading />;
     }
     return (
       <UdaciFitnessCalendar
