@@ -66,7 +66,7 @@ export function getDailyReminderValue() {
     today: "👋 Don't forget to log your data today!"
   };
 }
-export function getMatricMetaData(metric) {
+export function getMetricMetaInfo(metric) {
   const info = {
     run: {
       displaName: "Run",
