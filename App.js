@@ -15,6 +15,13 @@ import {
 } from "react-navigation-tabs";
 import Constants from "expo-constants";
 
+function AppStatusBar({ backgroundColor, ...props }) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+}
 const _TabNavigator =
   Platform.OS === "ios"
     ? createBottomTabNavigator
@@ -79,6 +86,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
+          <AppStatusBar />
           <Navigation />
         </View>
       </Provider>
