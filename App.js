@@ -73,29 +73,15 @@ const MainNavigation = createStackNavigator({
 });
 
 const Navigation = createAppContainer(MainNavigation);
-// This constant is used because when false I want to show some other examples
-//  shown on the course like "React Native Components" or "Native Features" that
-// aren't used on this appp
 
-const SHOW_UDACIFITNESS = true;
 export default class App extends React.Component {
-  componentDidMount() {
-    //setLocalNotification();
-  }
   render() {
-    if (SHOW_UDACIFITNESS) {
-      return (
-        <Provider store={createStore(reducer)}>
-          <View style={{ flex: 1 }}>
-            <Navigation />
-          </View>
-        </Provider>
-      );
-    } else {
-      return (
-        // <ScrollViewExample />
-        <FormExample />
-      );
-    }
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <Navigation />
+        </View>
+      </Provider>
+    );
   }
 }
