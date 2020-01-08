@@ -9,7 +9,9 @@ import {
 import {
   getMetricMetaInfo,
   timeToString,
-  getDailyReminderValue
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification
 } from "../utils/helpers";
 import UnitSlider from "./slider";
 import Stepper from "./stepper";
@@ -104,6 +106,7 @@ class Entry extends Component {
     this.toHome();
 
     submitEntry({ key, entry });
+    clearLocalNotification().then(setLocalNotification);
   };
   toHome = () => {
     this.props.navigation.dispatch(NavigationActions.back({ key: "Entry" }));
