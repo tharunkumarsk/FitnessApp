@@ -16,6 +16,7 @@ import {
 import Constants from "expo-constants";
 import EntryDetails from "./components/EntryDetails";
 import Live from "./components/Live";
+import { setLocalNotification } from "./utils/helpers";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -104,6 +105,9 @@ const MainNavigation = createStackNavigator({
 const Navigation = createAppContainer(MainNavigation);
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
