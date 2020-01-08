@@ -15,6 +15,7 @@ import {
 } from "react-navigation-tabs";
 import Constants from "expo-constants";
 import EntryDetails from "./components/EntryDetails";
+import Live from "./components/Live";
 
 function AppStatusBar({ backgroundColor, ...props }) {
   return (
@@ -46,6 +47,15 @@ const TabNavigator = _TabNavigator(
         tabBarLabel: "Add Entry",
         tabBarIcon: ({ tintColor }) => (
           <FontAwesome name="plus-square" size={30} color={tintColor} />
+        )
+      }
+    },
+    Live: {
+      screen: Live,
+      navigationOptions: {
+        tabBarLabel: "Live",
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="ios-speedometer" size={30} color={tintColor} />
         )
       }
     }
