@@ -55,7 +55,7 @@ const TabNavigator = _TabNavigator(
       navigationOptions: {
         tabBarLabel: "Live",
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="ios-speedometer" size={30} color={tintColor} />
+          <FontAwesome name="tachometer" size={30} color={tintColor} />
         )
       }
     }
